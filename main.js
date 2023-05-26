@@ -23,3 +23,4 @@ btnAgregarContacto.onclick = () => {
 }
 
 cargarContactos(local, ListadoContacto);
+ 

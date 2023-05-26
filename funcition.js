@@ -1,15 +1,16 @@
 const guardarContacto = (local, contacto)  => {
     local.setItem(contacto.id, JSON.stringify(contacto));
-    window.location.href = "/";
+    // window.location.href = "/";
+    location.reload(true);
 }
+
 const cargarContactos = (local, parentNode) => {
     let claves = Object.keys(local)
     console.log(claves)
-    for (claves of claves) {
-        let contacto = JSON.parse(local.getItem(claves))
+    for (let clave of claves) {
+        let contacto = JSON.parse(local.getItem(clave))
         crearContacto(parentNode, contacto, local)
-
-    }
+    };
 }
 
 const crearContacto = (parentNode, contacto, local) => {
@@ -32,11 +33,8 @@ const crearContacto = (parentNode, contacto, local) => {
     iconoBorrar.classList.add('material-icons', 'icono')
 
     iconoBorrar.onclick = () => {
-        local.removeItem(contacto.id)
-        window.location.href = '/'
-
-    }
-
+        borrarContacto(local, contacto.id, divContacto);
+    };
 
     divContacto.appendChild(nombreContacto)
     divContacto.appendChild(apellidoContacto)
@@ -46,6 +44,15 @@ const crearContacto = (parentNode, contacto, local) => {
     divContacto.appendChild(iconoBorrar)
 
     parentNode.appendChild(divContacto)
-
-
 }
+
+const borrarContacto = (local, contactoId, divContacto) => {
+    if (local.getItem(contactoId)) {
+        local.removeItem(contactoId);
+        console.log("Contacto eliminado:", contactoId);
+        divContacto.remove();
+    } else {
+        console.log("El contacto no existe en el almacenamiento local.");
+    }
+}
+
