@@ -1,10 +1,8 @@
 const guardarContacto = (local, contacto)  => {
-   if (contacto.nombre && contacto.apellido && contacto.telefono && contacto.ciudad && contacto.direccion) {
         local.setItem(contacto.id, JSON.stringify(contacto));
         location.reload(true);
-    } else {
-        alert("Por favor, completa todos los campos antes de guardar el contacto.");
-    };
+        
+    
 } 
 const cargarContactos = (local, parentNode) => {
     let claves = Object.keys(local)
@@ -23,6 +21,8 @@ const crearContacto = (parentNode, contacto, local) => {
     let cuidadContacto = document.createElement('p')
     let direccionContacto = document.createElement('p')
     let iconoBorrar = document.createElement('span')
+
+  
 
     nombreContacto.innerHTML = contacto.nombre
     apellidoContacto.innerHTML = contacto.apellido
